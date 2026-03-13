@@ -2,9 +2,7 @@ name: CI - WDIO iOS (Sauce)
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -22,16 +20,23 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm ci
 
-      - name: Run smoke (Sauce Mobile Virtual)
+      - name: Run smoke (Sauce)
         env:
           ENVIRONMENT: saucelabs
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-          SAUCE_HOSTNAME: ondemand.us-west-1.saucelabs.com
           SAUCE_APP_FILENAME: ${{ secrets.SAUCE_APP_FILENAME }}
+          SAUCE_HOSTNAME: ondemand.us-west-1.saucelabs.com
           SAUCE_IOS_DEVICE: iPhone 14 Simulator
           SAUCE_IOS_VERSION: "16.0"
         run: npm run test:smoke
+
+      - name: Upload screenshots (evidence)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/**
