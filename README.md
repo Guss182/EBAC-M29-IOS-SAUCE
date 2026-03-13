@@ -14,23 +14,15 @@ Este projeto foi estruturado para rodar **iOS no Windows** via **Sauce Labs (Mob
 1) `npm install`
 2) Copie `.env.example` -> `.env` e preencha
 3) Rodar Smoke:
-   - `npm run test:smoke`
+   - `npm run test:login`
+    - `npm run test:checkout`
+     - `npm run test:smoke`
 
 ## Por que existe um smoke test?
 Em alguns builds o app/back-end fica instável e selectors variam. O smoke é propositalmente **mínimo**:
 - abre o app
 - vai para a aba **Profile**
 - valida que a tela de login existe (campo de email)
-
-Isso é o suficiente para demonstrar a lógica de automação, configuração do Sauce e Page Objects.
-
-## GitHub Actions (para o módulo seguinte)
-Este repo já inclui um workflow em `.github/workflows/ci-ios-sauce.yml`.
-Você só precisa criar secrets no GitHub:
-- `SAUCE_USERNAME`
-- `SAUCE_ACCESS_KEY`
-- `SAUCE_APP_FILENAME` (ex.: `LojaEBAC-sim.zip`)
-
 
 ## Observação sobre instabilidade
 
