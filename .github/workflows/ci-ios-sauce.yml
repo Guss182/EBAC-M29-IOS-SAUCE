@@ -1,0 +1,37 @@
+name: CI - WDIO iOS (Sauce)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  wdio-ios-sauce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run smoke (Sauce Mobile Virtual)
+        env:
+          ENVIRONMENT: saucelabs
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+          SAUCE_HOSTNAME: ondemand.us-west-1.saucelabs.com
+          SAUCE_APP_FILENAME: ${{ secrets.SAUCE_APP_FILENAME }}
+          SAUCE_IOS_DEVICE: iPhone 14 Simulator
+          SAUCE_IOS_VERSION: "16.0"
+        run: npm run test:smoke

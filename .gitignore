@@ -1,0 +1,16 @@
+node_modules/
+allure-results/
+allure-report/
+reports/
+screenshots/
+.DS_Store
+
+# env
+.env
+.env.*
+
+# apps (never commit)
+app/
+*.ipa
+*.app
+*.zip

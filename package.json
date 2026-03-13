@@ -1,0 +1,22 @@
+{
+  "name": "m29-wdio-ios-sauce",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:smoke",
+    "test:smoke": "wdio run ./config/wdio.conf.js --suite smoke",
+    "test:checkout": "wdio run ./config/wdio.conf.js --suite checkout",
+    "test:login": "wdio run ./config/wdio.conf.js --suite login"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@wdio/cli": "^8.26.1",
+    "@wdio/local-runner": "^8.26.1",
+    "@wdio/mocha-framework": "^8.24.12",
+    "@wdio/spec-reporter": "^8.24.12",
+    "@wdio/globals": "^8.26.1"
+  }
+}
