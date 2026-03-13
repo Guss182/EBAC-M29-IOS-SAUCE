@@ -29,7 +29,7 @@ jobs:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
           SAUCE_APP_FILENAME: ${{ secrets.SAUCE_APP_FILENAME }}
-          SAUCE_HOSTNAME: ondemand.us-west-1.saucelabs.com
+          SAUCE_HOSTNAME: ${{ secrets.SAUCE_HOSTNAME }}
           SAUCE_IOS_DEVICE: iPhone 14 Simulator
           SAUCE_IOS_VERSION: "16.0"
         run: npm run test:smoke
